@@ -1,7 +1,8 @@
-function getTotalBooksCount(books) {
-  const result = books.length
-  return result
 
+
+function getTotalBooksCount(books) {
+  let result = books.length
+  return result
 }
 
 function getTotalAccountsCount(accounts) {
@@ -15,7 +16,7 @@ function getBooksBorrowedCount(books) {
 }
 
 function getMostCommonGenres(books) {
-  const commonGenres = {};
+const commonGenres = {};
   books.forEach((book) => {
     if (commonGenres[book.genre]) {
       commonGenres[book.genre]++;
@@ -29,13 +30,16 @@ function getMostCommonGenres(books) {
   }).sort((a,b)=> b.count - a.count).slice(0, 5);
 }
 
-
 function getMostPopularBooks(books) {
   let result = books.map((book) => {
-    return {name:book.title, count:book.borrows.length}
-     }).sort((a, b) => a.count < b.count ? 1 : -1).splice(0, 5);
-     
-     return result;
+ return {name:book.title, count:book.borrows.length}
+  }).sort((a, b) => a.count < b.count ? 1 : -1).splice(0, 5);
+  
+  return result;
+}
+//This is my helper function to sort and splice arrays using the top 5 results
+function sortArraysAndSplice(array) {
+  return array.sort((a, b) => b.count - a.count).slice(0, 5);
 }
 
 function getMostPopularAuthors(books, authors) {
@@ -52,7 +56,7 @@ function getMostPopularAuthors(books, authors) {
     });
     result.push(popAuthor)
   });
-  return result.sort((a,b) => b.count - a.count).slice(0, 5)
+  return sortArraysAndSplice(result)
   
 }
 
